@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kai Ortadeveci | Research Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single reading column, lab-notebook sections, two exhibits drawn from the real 60-electrode layout */
+:root{
+  --bg:#F5F7F7; --surface:#FFFFFF; --fg:#16201F; --muted:#56635F; --line:#D6DEDC;
+  --signal:#0B7A6C; --stim:#B5651D; --signal-soft:#DCEFEB; --stim-soft:#F6E7D8; --off:#C7D0CE;
+  --display:"Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body:"Literata", Georgia, "Times New Roman", serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1312; --surface:#141C1B; --fg:#E4ECEA; --muted:#93A39F; --line:#26322F;
+  --signal:#4FC7B4; --stim:#E39A5A; --signal-soft:#123430; --stim-soft:#3A2717; --off:#33403D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1312; --surface:#141C1B; --fg:#E4ECEA; --muted:#93A39F; --line:#26322F;
+  --signal:#4FC7B4; --stim:#E39A5A; --signal-soft:#123430; --stim-soft:#3A2717; --off:#33403D; color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:760px;margin:0 auto;padding-block:48px 72px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2.3rem,6vw,3.4rem);font-weight:700;letter-spacing:-0.02em}
+h2{font-size:1.55rem;font-weight:600}
+h3{font-size:1.1rem;font-weight:600}
+p{margin:0;max-width:65ch}
+section{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
+.lede{font-size:1.15rem;color:var(--fg)}
+.meta{font-family:var(--mono);font-size:.8rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+.status{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--mono);font-size:.75rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.pill.done{border-color:var(--signal);color:var(--signal)}
+.pill.next{border-color:var(--stim);color:var(--stim)}
+.note{font-size:.95rem;color:var(--muted);border-left:3px solid var(--stim);padding-left:12px}
+.loop{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;list-style:none;padding:0;margin:0;counter-reset:s}
+.loop li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.loop li b{font-family:var(--display);font-size:1rem}
+.loop li span{font-size:.88rem;color:var(--muted);line-height:1.45}
+.loop li::before{counter-increment:s;content:counter(s);font-family:var(--mono);font-size:.75rem;color:var(--signal)}
+.loopnote{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.fig svg{width:260px;max-width:100%;height:auto;flex:0 0 auto}
+.fig .cap{flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:10px;font-size:.95rem}
+.key{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem}
+.dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+.work{display:flex;flex-direction:column;gap:28px}
+.item{display:flex;flex-direction:column;gap:8px}
+ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;max-width:65ch}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:520px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--display);font-weight:600;white-space:nowrap}
+td.old{color:var(--muted)}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.num{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.num strong{font-family:var(--mono);font-size:1.25rem;color:var(--signal);font-variant-numeric:tabular-nums}
+.num span{font-size:.88rem;color:var(--muted);line-height:1.45}
+footer{font-family:var(--mono);font-size:.78rem;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;display:flex;flex-direction:column;gap:6px}
+a{color:var(--signal)}
+a:focus-visible{outline:2px solid var(--stim);outline-offset:2px}
+</style>
+<style>
+nav.top{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--mono);font-size:.8rem}
+nav.top a{text-decoration:none}
+.project{display:flex;flex-direction:column;gap:56px;border-top:2px solid var(--line);padding-top:40px}
+.disclose{background:var(--stim-soft);border-radius:8px;padding:14px 16px;font-size:.95rem}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.stage b{font-family:var(--display)}
+.stage span{font-size:.92rem;color:var(--muted);line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="eyebrow">Research portfolio</div>
+  <h1>Kai Ortadeveci</h1>
+  <p class="lede">Cognitive Science at UC Berkeley. I work where neuroscience, machine learning and hardware meet.</p>
+  <nav class="top"><a href="#mea">MEA-CartPole</a><a href="#usc">Visual cortex model (USC)</a><span>kaiorta@berkeley.edu</span><a href="https://www.linkedin.com/in/kaiortadeveci">LinkedIn</a></nav>
+</header>
+
+<div class="project" id="mea">
+
+<header style="display:flex;flex-direction:column;gap:18px">
+  <div class="eyebrow">Neurotech@Berkeley · Wetware research project</div>
+  <h1 style="font-size:clamp(1.9rem,5vw,2.6rem)">MEA-CartPole</h1>
+  <p class="lede">A closed-loop brain-computer interface that turns a CartPole game into electrical stimulation of living neurons on a 60-electrode array, then reads their spiking back as moves.</p>
+  <div class="meta"><span>Kai Ortadeveci, Co-Lead</span><span>Feb 2026 to present</span><span>Updated Oct 2026</span></div>
+  <div class="status">
+    <span class="pill done">Hardware brought up</span>
+    <span class="pill done">Pipeline audited</span>
+    <span class="pill done">v2 encoding/decoding designed</span>
+    <span class="pill next">First live-neuron sessions next</span>
+  </div>
+  <p class="note">No live-neuron sessions have run yet. Every result on this page comes from simulation or hardware checks, not from neurons learning the task.</p>
+</header>
+
+<section>
+  <div class="eyebrow">The question</div>
+  <h2>Can a culture build a pathway it was never given?</h2>
+  <p>Cortical neurons on an array have improved at Pong (DishBrain, Kagan et al., 2022), and cortical organoids have shown goal-directed learning on CartPole (Robbins et al., 2026). That second result used a high-density array with 26,400 electrodes, which can find circuits that already exist and train them.</p>
+  <p>Our array has 60 electrodes at 200 µm spacing, about 11 times coarser. Each electrode hears a small cluster of cells, not one neuron. So we ask a different question: can a dissociated culture learn an input-to-output mapping we impose on it, forming a new pathway instead of strengthening one that was already there?</p>
+</section>
+
+<section>
+  <div class="eyebrow">How the loop works</div>
+  <h2>One game step, end to end</h2>
+  <ol class="loop">
+    <li><b>Game</b><span>CartPole reports the pole's angle and angular velocity.</span></li>
+    <li><b>Encode</b><span>The state becomes a stimulation pattern: which electrode, at what pulse rate.</span></li>
+    <li><b>Stimulate</b><span>Biphasic, charge-balanced pulses go into the dish.</span></li>
+    <li><b>Record</b><span>All 60 electrodes are sampled at up to 50 kHz.</span></li>
+    <li><b>Decode</b><span>Spikes on the left and right output electrodes pick push-left or push-right.</span></li>
+    <li><b>Feedback</b><span>A separate training signal, on its own generator, follows performance.</span></li>
+  </ol>
+  <p class="loopnote">Python runs the game, encoder and decoder. C# drives the MCS MEA2100-Mini through its SDK. In v2, each game step gets its own 200 ms cycle.</p>
+</section>
+
+<section>
+  <div class="eyebrow">My work</div>
+  <h2>What I built and found</h2>
+  <div class="work">
+
+    <div class="item">
+      <h3>Brought up the hardware</h3>
+      <ul>
+        <li>Set up the MEA chip and headstage from the system manual and confirmed raw data streaming from all 60 channels.</li>
+        <li>Traced the full signal path, Python to C# to the MCS SDK to the device, and logged where it broke: an interface file never wired into the main program, dummy data in place of electrode data, compile errors, and a hardcoded stimulation waveform.</li>
+        <li>Showed from the hardware manual that the old amplitude encoding (120 to 180 µV) fit inside a single 305 µV DAC step, so amplitude carried no information at all.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>Audited the inherited pipeline by running it</h3>
+      <p>I ran the existing encoding and decoding code instead of only reading it, and documented 15 defects. The ones that mattered most:</p>
+      <ul>
+        <li><strong>The game state never reached the neurons.</strong> Radians were treated as degrees, so stimulation moved between 19.8 and 20.2 Hz instead of 10 to 30 Hz.</li>
+        <li><strong>The loop rewarded itself.</strong> Stimulation landed on the same electrodes used to decode the move, so whichever side won once would likely keep winning.</li>
+        <li><strong>There was no real feedback.</strong> The reward branch fired every step and the punishment branch could never run.</li>
+        <li><strong>Decoding was off by design.</strong> Filter cutoffs were wrong by about 20 times from a bad sampling-rate assumption, and the code counted samples instead of spikes.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>Redesigned encoding and decoding (v2)</h3>
+      <p>The rule behind v2: input and output live in separate regions, so a move has to cross the network instead of echoing the stimulus.</p>
+      <div class="fig">
+        <svg viewBox="0 0 260 260" role="img" aria-label="8 by 8 electrode grid with corners missing. The top row's six electrodes are outputs, three left and three right. The bottom row's six electrodes are inputs.">
+          <g id="grid"></g>
+          <text x="130" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)">OUTPUT  L L L · R R R</text>
+          <text x="130" y="254" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)">INPUT  pole angle → electrode</text>
+          <line x1="246" y1="40" x2="246" y2="216" stroke="var(--muted)" stroke-width="1"/>
+          <text x="250" y="132" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--muted)" transform="rotate(90 250 132)" text-anchor="middle">1.4 mm</text>
+        </svg>
+        <div class="cap">
+          <div class="key"><span class="dot" style="background:var(--stim)"></span>Input row: pole angle picks one of 6 electrodes</div>
+          <div class="key"><span class="dot" style="background:var(--signal)"></span>Output row: 3 left vs 3 right decide the move</div>
+          <div class="key"><span class="dot" style="background:var(--off)"></span>The network in between, recorded throughout</div>
+          <p>Angle sets <em>where</em> the dish is stimulated. Angular velocity sets <em>how fast</em>: a signed pulse rate from 10 to 40 Hz, faster when the pole is falling and slower when it is recovering.</p>
+        </div>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Element</th><th>Old pipeline</th><th>v2</th></tr></thead>
+          <tbody>
+            <tr><td>Pole angle</td><td class="old">Pulse frequency, effectively unencoded</td><td>Which of 6 input electrodes (place code)</td></tr>
+            <tr><td>Angular velocity</td><td class="old">Pulse amplitude, inside one DAC step</td><td>Signed pulse rate, 10 to 40 Hz</td></tr>
+            <tr><td>Stimulation site</td><td class="old">30 electrodes, the same ones used to decode</td><td>1 electrode, chosen by game state</td></tr>
+            <tr><td>Decode</td><td class="old">Channels 0 to 29 vs 30 to 59 by index</td><td>3 vs 3 output electrodes by physical position, template-matched spikes</td></tr>
+            <tr><td>Feedback</td><td class="old">None in practice</td><td>Structured or unstructured feedback from a rank rule, on its own generator</td></tr>
+            <tr><td>Timing</td><td class="old">Real time, with stale data</td><td>One game step per 200 ms cycle</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>Tested every design choice in simulation first</h3>
+      <p>Before using hardware time, I simulated scripted CartPole policies and toy cultures in Gymnasium, 300 to 1,000 episodes per test, and changed the design where the numbers said to.</p>
+      <div class="nums">
+        <div class="num"><strong>49%</strong><span>of steps would get the wrong side if we added a 1° buffer at vertical, hiding left and right exactly when play improves. I had proposed the buffer, then dropped it.</span></div>
+        <div class="num"><strong>500 → 10</strong><span>steps for a perfect controller forced to hold each decision 200 ms in real time. This is why v2 slows the game to one step per cycle.</span></div>
+        <div class="num"><strong>42 vs 11</strong><span>steps for a toy culture that only spreads activity, under normal vs mirrored mapping. Learning has to beat each dish's own baseline, not random play.</span></div>
+        <div class="num"><strong>46 → 0</strong><span>of 50 episodes ending on the cart's position limit once we removed it, so episodes end on the pole, which is the skill we measure.</span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>Designed controls that separate learning from look-alikes</h3>
+      <ul>
+        <li><strong>Timing-shuffled feedback:</strong> the same training signal, the same number of times, at random moments. I narrowed it to shuffle only feedback events, since shuffling the whole log would leave the culture playing blind and the control could never fail.</li>
+        <li><strong>Mirrored mapping</strong> in half the dishes, to rule out electrode geometry.</li>
+        <li><strong>Mid-session rule change:</strong> reverse the push direction; real learning should drop, then recover.</li>
+        <li><strong>Whole-dish firing logged every minute</strong> to track homeostatic drift.</li>
+      </ul>
+      <p>Several of these came from conversations I set up with Cortical Labs and a UC Berkeley neuroscience professor.</p>
+    </div>
+
+    <div class="item">
+      <h3>Co-lead the team</h3>
+      <ul>
+        <li>Co-lead an 8-person team across 6 workstreams: encoding and decoding, hardware, closed-loop API and latency, controls, feedback, and network mapping.</li>
+        <li>Built onboarding docs and pipeline diagrams for a codebase that had almost none, and a tracker of about 114 decisions, builds and tests that surfaced 5 conflicting proposals for the team to settle.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Status</div>
+  <h2>Where it stands</h2>
+  <p>The v2 design is complete and in team review. Next: map each channel to its physical electrode, run saline controls to set spike thresholds, measure loop latency against a 20 ms budget, wire v2 into the live loop, and run the first one to two sessions with live cultures from our partner wet lab.</p>
+</section>
+
+</div>
+
+<div class="project" id="usc">
+<header style="display:flex;flex-direction:column;gap:18px">
+  <div class="eyebrow">USC · Laboratory for Neural Computation (Prof. Bartlett W. Mel)</div>
+  <h1 style="font-size:clamp(1.9rem,5vw,2.6rem)">Reviving an unpublished model of visual cortex</h1>
+  <p class="lede">A computational model, from a 2015 USC PhD dissertation, of how the brain learns to recognize visual features without any labels or teaching signal.</p>
+  <div class="meta"><span>Research Assistant</span><span>Aug 2025 to present</span><span>MATLAB, Python, TensorFlow/Keras, Claude Code</span></div>
+  <p class="disclose"><strong>Note on disclosure:</strong> this work is unpublished and is being prepared for publication with the original author and PI. I can't share results, figures, parameter values or code here, so this section stays at a high level.</p>
+</header>
+<section>
+  <div class="eyebrow">The question</div>
+  <h2>How does the brain grow so many different feature detectors?</h2>
+  <p>Neurons in mid-level visual cortex (areas V2 and V4) respond to a huge variety of curves, corners, textures and shapes. How that variety develops without supervision is an open question. The model proposes a simple two-stage mechanism, which works like a hybrid Kohonen self-organizing map with a threshold gate in the first layer.</p>
+  <div class="stages">
+    <div class="stage"><b>1. Threshold gate</b><span>A simulated patch of primary visual cortex (V1) looks at small natural-image patches and passes on only the ones that excite it most strongly.</span></div>
+    <div class="stage"><b>2. Competitive learning</b><span>A large population of model V4 cells learns from those patches. Only the most active cells adjust toward each one. No labels, no backpropagation.</span></div>
+  </div>
+</section>
+<section>
+  <div class="eyebrow">The challenge</div>
+  <h2>Three sources, none trustworthy alone</h2>
+  <p>The code had not run in about a decade, the scripts that set each experiment's parameters were lost, and the dissertation, the code and the code's comments disagreed with each other in many places.</p>
+</section>
+<section>
+  <div class="eyebrow">My role</div>
+  <h2>What I did</h2>
+  <ul>
+    <li><strong>Got it running again</strong> on modern software and new natural-image datasets without changing its science, keeping the original files for comparison.</li>
+    <li><strong>Traced the math of the entire model</strong> from the dissertation into the code, and resolved the places where they disagreed using evidence from archived files.</li>
+    <li><strong>Extended the hybrid learning rule</strong> to natural images and tuned the model across a large parameter campaign.</li>
+    <li><strong>Reproduced the dissertation's central claims</strong> on new data.</li>
+    <li><strong>Measured the model's computational cost</strong> and made its first stage more efficient.</li>
+    <li><strong>Built an AI-assisted research workflow</strong> in Claude Code, with approval gates before any change, standardized reports, and every edit checked against the original.</li>
+  </ul>
+  <p class="note">Results will be shared once the work is published.</p>
+</section>
+</div>
+
+<footer>
+  <span>MEA-CartPole poster: "Closed-Loop Control of the CartPole Task Using Neural Activity Recorded from Microelectrode Arrays." A. Sabouri, R. Wilson, K. Ortadeveci, E. Hou. Inter-UC neurotech conference, Spring 2026.</span>
+  <span>Stack: Python, C#, Gymnasium, Brian2, NumPy, SciPy, MCS MEA2100-Mini, Mcs.Usb SDK</span>
+  <span>Contact: kaiorta@berkeley.edu · linkedin.com/in/kaiortadeveci</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var g=document.getElementById('grid'), ns='http://www.w3.org/2000/svg';
+  var x0=32, y0=40, step=26;
+  for(var r=0;r<8;r++){for(var c=0;c<8;c++){
+    if((r===0||r===7)&&(c===0||c===7)) continue;
+    var fill='var(--off)';
+    if(r===0) fill='var(--signal)';
+    if(r===7) fill='var(--stim)';
+    var e=document.createElementNS(ns,'circle');
+    e.setAttribute('cx',x0+c*step); e.setAttribute('cy',y0+r*(step-1));
+    e.setAttribute('r', (r===0||r===7)?8:6); e.setAttribute('fill',fill);
+    g.appendChild(e);
+  }}
+  var d=document.createElementNS(ns,'line');
+  d.setAttribute('x1',x0+3.5*step); d.setAttribute('x2',x0+3.5*step);
+  d.setAttribute('y1',y0-12); d.setAttribute('y2',y0+12);
+  d.setAttribute('stroke','var(--muted)'); d.setAttribute('stroke-dasharray','2 2');
+  g.appendChild(d);
+})();
+</script>
+
+</body>
+</html>
